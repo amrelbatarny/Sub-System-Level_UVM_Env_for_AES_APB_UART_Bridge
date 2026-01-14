@@ -1,0 +1,8 @@
+# Simulation outputs (QuestaSim)
+src/sim/work/
+src/sim/certe_dump.xml
+src/sim/runsim_*.do
+src/sim/tr_db.log
+src/sim/transcript
+src/sim/vsim.wlf
+src/sim/*.ucdb
