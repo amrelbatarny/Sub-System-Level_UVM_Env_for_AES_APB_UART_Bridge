@@ -10,18 +10,23 @@
 #   make COVERAGE=0                - Run without coverage
 #   make GUI=0 COVERAGE=0          - Run in batch mode without coverage
 #   make clean                     - Clean all simulation artifacts
-#   make cleanall                  - Force clean with elevated permissions
 
 # Default settings
 GUI ?= 1
 COVERAGE ?= 1
 
+# Generate date-based filenames
+DATE := $(shell date +%Y-%m-%d)
+TIME := $(shell date +%H-%M-%S)
+LOG_FILE := $(DATE).log
+DETAILED_LOG := $(DATE)_$(TIME).log
+
 # File names
 DO_FILE = runsim.do
-TEMP_DO_FILE = runsim_temp.do
+TEMP_DO_FILE = runsim_$(DATE).do
 
 # Default target
-.PHONY: all run clean cleanall force-clean help
+.PHONY: all run clean cleanlog cleanall force-clean help
 
 all: run
 
@@ -30,6 +35,8 @@ run:
 	@echo "Preparing QuestaSim simulation..."
 	@echo "GUI mode: $(GUI)"
 	@echo "Coverage: $(COVERAGE)"
+	@echo "Script: $(TEMP_DO_FILE)"
+	@echo "Log file: $(LOG_FILE)"
 	@echo "=========================================="
 	@cp $(DO_FILE) $(TEMP_DO_FILE)
 ifeq ($(GUI),0)
@@ -48,10 +55,15 @@ endif
 	@echo "→ Starting simulation..."
 	@echo "=========================================="
 ifeq ($(GUI),0)
-	vsim -c -do $(TEMP_DO_FILE)
+	@vsim -c -do $(TEMP_DO_FILE) 2>&1 | tee $(LOG_FILE)
 else
-	vsim -do $(TEMP_DO_FILE)
+	@vsim -do $(TEMP_DO_FILE) 2>&1 | tee $(LOG_FILE)
 endif
+	@echo "=========================================="
+	@echo "Simulation complete!"
+	@echo "Script: $(TEMP_DO_FILE)"
+	@echo "Log: $(LOG_FILE)"
+	@echo "=========================================="
 
 clean:
 	@echo "=========================================="
@@ -69,18 +81,28 @@ clean:
 	fi
 	@sudo rm -rf work/ 2>/dev/null || chmod -R 777 work/ && rm -rf work/ || true
 	@[ ! -d "work" ] && echo "  ✓ Removed work/" || echo "  ⚠ Warning: Could not fully remove work/"
-	@rm -f simulation.log && echo "→ Removed simulation.log" || true
 	@rm -f tr_db.log && echo "→ Removed tr_db.log" || true
 	@rm -f transcript && echo "→ Removed transcript" || true
 	@rm -f vsim.wlf && echo "→ Removed vsim.wlf" || true
 	@rm -f vsim_stacktrace.vstf && echo "→ Removed vsim_stacktrace.vstf" || true
 	@rm -f certe_dump.xml && echo "→ Removed certe_dump.xml" || true
-	@rm -f $(TEMP_DO_FILE) && echo "→ Removed $(TEMP_DO_FILE)" || true
+	@rm -f runsim_*.do && echo "→ Removed dated runsim scripts (runsim_*.do)" || true
 	@rm -f *.ucdb && echo "→ Removed *.ucdb files" || true
 	@rm -f *cover_report.txt && echo "→ Removed coverage reports" || true
 	@rm -f coverage_rpt.txt && echo "→ Removed coverage_rpt.txt" || true
 	@echo "=========================================="
 	@echo "Clean complete!"
+	@echo "Note: Log files (*.log) preserved"
+	@echo "      Use 'make cleanlog' to remove logs"
+	@echo "=========================================="
+
+cleanlog:
+	@echo "=========================================="
+	@echo "Removing log files..."
+	@echo "=========================================="
+	@rm -f *.log && echo "→ Removed all log files (*.log)" || echo "  ⚠ No log files found"
+	@echo "=========================================="
+	@echo "Log cleanup complete!"
 	@echo "=========================================="
 
 cleanall: force-clean
@@ -100,13 +122,15 @@ force-clean:
 		sudo rm -rf work/ 2>/dev/null || true; \
 	fi
 	@sudo rm -rf work/ 2>/dev/null || true
-	@sudo rm -f simulation.log tr_db.log transcript vsim.wlf vsim_stacktrace.vstf 2>/dev/null || true
-	@sudo rm -f certe_dump.xml $(TEMP_DO_FILE) *.ucdb *cover_report.txt coverage_rpt.txt 2>/dev/null || true
-	@rm -f simulation.log tr_db.log transcript vsim.wlf vsim_stacktrace.vstf 2>/dev/null || true
-	@rm -f certe_dump.xml $(TEMP_DO_FILE) *.ucdb *cover_report.txt coverage_rpt.txt 2>/dev/null || true
+	@sudo rm -f tr_db.log transcript vsim.wlf vsim_stacktrace.vstf 2>/dev/null || true
+	@sudo rm -f certe_dump.xml runsim_*.do *.ucdb *cover_report.txt coverage_rpt.txt 2>/dev/null || true
+	@rm -f tr_db.log transcript vsim.wlf vsim_stacktrace.vstf 2>/dev/null || true
+	@rm -f certe_dump.xml runsim_*.do *.ucdb *cover_report.txt coverage_rpt.txt 2>/dev/null || true
 	@[ ! -d "work" ] && echo "  ✓ Successfully removed all files" || echo "  ⚠ Some files may still be locked"
 	@echo "=========================================="
 	@echo "Force clean complete!"
+	@echo "Note: Log files (*.log) preserved"
+	@echo "      Use 'make cleanlog' to remove logs"
 	@echo "=========================================="
 
 help:
@@ -116,10 +140,11 @@ help:
 	@echo ""
 	@echo "TARGETS:"
 	@echo "  make [run]       - Run simulation (default target)"
-	@echo "  make clean       - Remove all simulation artifacts"
-	@echo "                     (tries sudo for DPI files)"
+	@echo "                     Creates log: YYYY-MM-DD.log"
+	@echo "  make clean       - Remove simulation artifacts (keeps logs)"
+	@echo "  make cleanlog    - Remove ONLY log files (*.log)"
 	@echo "  make cleanall    - Alias for force-clean"
-	@echo "  make force-clean - Force remove ALL files with sudo"
+	@echo "  make force-clean - Force remove ALL files except logs"
 	@echo "                     (use if clean fails)"
 	@echo "  make help        - Display this help message"
 	@echo ""
@@ -140,11 +165,20 @@ help:
 	@echo "  make GUI=0 COVERAGE=0         # Batch mode without Coverage"
 	@echo "  make run GUI=1 COVERAGE=1     # Explicit: GUI + Coverage"
 	@echo ""
+	@echo "LOGGING:"
+	@echo "  Each simulation creates dated files:"
+	@echo "  - Log file: YYYY-MM-DD.log (e.g., 2026-01-14.log)"
+	@echo "  - Script file: runsim_YYYY-MM-DD.do"
+	@echo "  Output is shown on screen AND saved to log file"
+	@echo ""
 	@echo "CLEANING:"
-	@echo "  make clean                    # Remove files (with DPI handling)"
+	@echo "  make clean                    # Remove files (keeps logs)"
+	@echo "  make cleanlog                 # Remove only log files"
 	@echo "  make cleanall                 # Force remove with sudo"
+	@echo "  make clean cleanlog           # Remove everything"
 	@echo ""
 	@echo "NOTE: DPI files may require elevated permissions."
 	@echo "      If 'make clean' fails, run 'make cleanall'"
+	@echo "      Log files are preserved by default for audit trail"
 	@echo ""
 	@echo "=========================================="
