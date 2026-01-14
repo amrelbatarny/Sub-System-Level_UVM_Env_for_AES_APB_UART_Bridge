@@ -12,7 +12,7 @@ module AES_APB_UART_Bridge #(
     parameter N_AES         = 128,
     parameter Nr_AES        = 10,
     parameter Nk_AES        = 4,
-    parameter KEY_AES       = 128'h2B7E151628AED2A6ABF7158809CF4F3C,
+    parameter KEY_AES       = 128'h2b7e151628aed2a6abf7158809cf4f3c,
     parameter AES_LATENCY   = 5,
     parameter FIFO_DEPTH    = 20,
     parameter NTICKS        = 16
