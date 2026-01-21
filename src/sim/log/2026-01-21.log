@@ -2,9 +2,9 @@ Reading pref.tcl
 
 # 2021.1
 
-# do runsim_2026-01-14.do
+# do runsim_2026-01-21.do
 # QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
-# Start time: 03:36:06 on Jan 14,2026
+# Start time: 09:08:13 on Jan 21,2026
 # vlog -f src_files.f -mfcu "+cover" "+define+SIM" 
 # -- Compiling package shared_pkg
 # -- Compiling module APB_Master
@@ -47,11 +47,11 @@ Reading pref.tcl
 # 	bridge_top
 # ** Note: (vlog-7082) For C/C++ auto compile, choosing compiler C:\mingw64\bin\gcc.exe set from the PATH environment variable.
 # -- Compiling DPI/PLI C file ../tb/aes_encrypt.c
-# End time: 03:36:07 on Jan 14,2026, Elapsed time: 0:00:01
+# End time: 09:08:15 on Jan 21,2026, Elapsed time: 0:00:02
 # Errors: 0, Warnings: 0
 # vsim -voptargs="+acc" work.bridge_top -classdebug -uvmcontrol=all -coverage "+UVM_VERBOSITY=UVM_MEDIUM" "+UVM_NO_RELNOTES" "+UVM_TESTNAME=bridge_test_base" 
-# Start time: 03:36:07 on Jan 14,2026
-# Loading C:/Users/20122/AppData/Local/Temp\amrelbatarny@AMRELBATARNY_dpi_12824\win64_gcc-15.2.0\export_tramp.dll
+# Start time: 09:08:15 on Jan 21,2026
+# Loading C:/Users/20122/AppData/Local/Temp\amrelbatarny@AMRELBATARNY_dpi_22260\win64_gcc-15.2.0\export_tramp.dll
 # ** Note: (vsim-3812) Design is being optimized...
 # ** Note: (vopt-143) Recognized 1 FSM in module "APB_Controller(fast)".
 # ** Note: (vopt-143) Recognized 1 FSM in module "UART_Controller(fast)".
@@ -113,8 +113,8 @@ Reading pref.tcl
 # Loading work.AES_if(fast__2)
 # Loading work.APB_controller_if(fast__2)
 # ** Note: (vsim-7082) For C/C++ auto compile, choosing compiler C:\mingw64\bin\gcc.exe set from the PATH environment variable.
-# Compiling C:/Users/20122/AppData/Local/Temp\amrelbatarny@AMRELBATARNY_dpi_12824\win64_gcc-15.2.0\exportwrapper.c
-# Loading C:/Users/20122/AppData/Local/Temp\amrelbatarny@AMRELBATARNY_dpi_12824\win64_gcc-15.2.0\vsim_auto_compile.dll
+# Compiling C:/Users/20122/AppData/Local/Temp\amrelbatarny@AMRELBATARNY_dpi_22260\win64_gcc-15.2.0\exportwrapper.c
+# Loading C:/Users/20122/AppData/Local/Temp\amrelbatarny@AMRELBATARNY_dpi_22260\win64_gcc-15.2.0\vsim_auto_compile.dll
 # Loading C:/questasim64_2021.1/uvm-1.2\win64\uvm_dpi.dll
 # 1
 # UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
@@ -425,7 +425,7 @@ Reading pref.tcl
 # UVM_INFO ../tb/bridge_test_base.svh(154) @ 104663: uvm_test_top [bridge_test_base] Finished sequence: virtual_sequence
 # UVM_INFO verilog_src/uvm-1.2/src/base/uvm_objection.svh(1270) @ 104663: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
 # UVM_INFO ../tb/monitors/AES_monitor.svh(112) @ 104663: uvm_test_top.env.aes_agt.mntr [uvm_monitor] MONITORED 4 TRANSACTIONS
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(170) @ 104663: uvm_test_top.env.aes_sb [TEST_SUMMARY] 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.aes_sb [TEST_SUMMARY] 
 # ===============================================
 #      TEST SUMMARY REPORT - aes_sb
 # ===============================================
@@ -436,10 +436,10 @@ Reading pref.tcl
 # Pass Rate         : 100.00%
 # ===============================================
 # 
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(174) @ 104663: uvm_test_top.env.aes_sb [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.aes_sb [TEST_RESULT] *** TEST PASSED ***
 # UVM_INFO ../tb/monitors/APB_monitor_base.svh(118) @ 104663: uvm_test_top.env.apb_agt_1.mntr [uvm_monitor] MONITORED 32 TRANSACTIONS
 # UVM_INFO ../tb/monitors/APB_monitor_base.svh(118) @ 104663: uvm_test_top.env.apb_agt_2.mntr [uvm_monitor] MONITORED 32 TRANSACTIONS
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(170) @ 104663: uvm_test_top.env.apb_ctrl_sb_1 [TEST_SUMMARY] 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.apb_ctrl_sb_1 [TEST_SUMMARY] 
 # ===============================================
 #      TEST SUMMARY REPORT - apb_ctrl_sb_1
 # ===============================================
@@ -450,8 +450,8 @@ Reading pref.tcl
 # Pass Rate         : 100.00%
 # ===============================================
 # 
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(174) @ 104663: uvm_test_top.env.apb_ctrl_sb_1 [TEST_RESULT] *** TEST PASSED ***
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(170) @ 104663: uvm_test_top.env.apb_ctrl_sb_2 [TEST_SUMMARY] 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.apb_ctrl_sb_1 [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.apb_ctrl_sb_2 [TEST_SUMMARY] 
 # ===============================================
 #      TEST SUMMARY REPORT - apb_ctrl_sb_2
 # ===============================================
@@ -462,8 +462,8 @@ Reading pref.tcl
 # Pass Rate         : 100.00%
 # ===============================================
 # 
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(174) @ 104663: uvm_test_top.env.apb_ctrl_sb_2 [TEST_RESULT] *** TEST PASSED ***
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(170) @ 104663: uvm_test_top.env.apb_sb_1 [TEST_SUMMARY] 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.apb_ctrl_sb_2 [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.apb_sb_1 [TEST_SUMMARY] 
 # ===============================================
 #      TEST SUMMARY REPORT - apb_sb_1
 # ===============================================
@@ -474,8 +474,8 @@ Reading pref.tcl
 # Pass Rate         : 100.00%
 # ===============================================
 # 
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(174) @ 104663: uvm_test_top.env.apb_sb_1 [TEST_RESULT] *** TEST PASSED ***
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(170) @ 104663: uvm_test_top.env.apb_sb_2 [TEST_SUMMARY] 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.apb_sb_1 [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.apb_sb_2 [TEST_SUMMARY] 
 # ===============================================
 #      TEST SUMMARY REPORT - apb_sb_2
 # ===============================================
@@ -486,7 +486,7 @@ Reading pref.tcl
 # Pass Rate         : 100.00%
 # ===============================================
 # 
-# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(174) @ 104663: uvm_test_top.env.apb_sb_2 [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.apb_sb_2 [TEST_RESULT] *** TEST PASSED ***
 # UVM_INFO verilog_src/uvm-1.2/src/base/uvm_factory.svh(1645) @ 104663: reporter [UVM/FACTORY/PRINT] 
 #### Factory Configuration (*)
 # 
@@ -526,5 +526,5 @@ Reading pref.tcl
 # Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_2021.1/win64/../verilog_src/uvm-1.2/src/base/uvm_root.svh line 517
 # Stopped at C:/questasim64_2021.1/win64/../verilog_src/uvm-1.2/src/base/uvm_root.svh line 517
 VSIM 2> exit
-# End time: 03:46:28 on Jan 14,2026, Elapsed time: 0:10:21
+# End time: 09:09:16 on Jan 21,2026, Elapsed time: 0:01:01
 # Errors: 0, Warnings: 0

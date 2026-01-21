@@ -1,5 +1,7 @@
 # Makefile for QuestaSim simulation control
 # ==========================================
+# Note: The code in this file is AI-generated.
+# 
 # Variables:
 #   GUI=1/0      : Enable/disable GUI mode (default: 1)
 #   COVERAGE=1/0 : Enable/disable coverage collection (default: 1)
@@ -12,13 +14,13 @@
 #   make clean                     - Clean all simulation artifacts
 
 # Default settings
-GUI ?= 1
-COVERAGE ?= 1
+GUI ?= 0
+COVERAGE ?= 0
 
 # Generate date-based filenames
 DATE := $(shell date +%Y-%m-%d)
 TIME := $(shell date +%H-%M-%S)
-LOG_FILE := $(DATE).log
+LOG_FILE := log/$(DATE).log
 DETAILED_LOG := $(DATE)_$(TIME).log
 
 # File names
