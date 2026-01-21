@@ -14,9 +14,12 @@ package bridge_pkg;
     
     // Sequencers
     `include "sequencers/APB_sequencer.svh"
+    `include "sequencers/AES_sequencer.svh"
     `include "sequencers/SYSCTRL_sequencer.svh"
-    `include "virtual_sequencer.svh"
-    
+
+    // Sequencer Pool (Singleton Class)
+    `include "sequencer_pool.svh"
+
     // Configuration Objects
     `include "env_config.svh"
     `include "agent_config.svh"
@@ -27,7 +30,7 @@ package bridge_pkg;
     `include "monitors/APB_controller_monitor.svh"
     `include "monitors/AES_monitor.svh"
     `include "monitors/SYSCTRL_monitor.svh"
-    
+
     // Drivers
     `include "drivers/APB_driver_base.svh"
     `include "drivers/APB_driver_1.svh"

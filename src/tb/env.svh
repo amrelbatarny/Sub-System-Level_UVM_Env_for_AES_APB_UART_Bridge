@@ -21,6 +21,10 @@
 class bridge_env extends uvm_env;
     `uvm_component_utils(bridge_env)
 
+    typedef sequencer_pool #(uvm_sequencer_base) sqr_pool_type;
+
+    sqr_pool_type sqrs = sqr_pool_type::get_global_pool();
+
     APB_scoreboard            #(APB_sequence_item_1, APB_sequence_item_1)          apb_sb_1;
     APB_scoreboard            #(APB_sequence_item_2, APB_sequence_item_2)          apb_sb_2;
     APB_controller_scoreboard #(APB_sequence_item_1, APB_controller_sequence_item) apb_ctrl_sb_1;
@@ -42,8 +46,6 @@ class bridge_env extends uvm_env;
     apb_controller_cfg_type apb_controller_cfg_1;
     apb_controller_cfg_type apb_controller_cfg_2;
     aes_cfg_type            aes_cfg;
-
-    virtual_sequencer v_seqr;
 
 
     // Function: new
@@ -68,6 +70,12 @@ class bridge_env extends uvm_env;
 
     extern function void connect_phase(uvm_phase phase);
 
+    // Function: get_sequencers
+    //
+    // Populates the sequencer pool with handles from contained agents, assigning
+    // unique names for later retrieval by sequences and virtual sequences.
+
+    extern function void get_sequencers();
 
     // Function: configure_agents
     //
@@ -163,9 +171,7 @@ function void bridge_env::build_phase(uvm_phase phase);
     apb_cfg_2             = apb_cfg_2_type::type_id::create("apb_cfg_2");
     apb_controller_cfg_1  = apb_controller_cfg_type::type_id::create("apb_controller_cfg_1");
     apb_controller_cfg_2  = apb_controller_cfg_type::type_id::create("apb_controller_cfg_2");
-    aes_cfg           = aes_cfg_type::type_id::create("aes_cfg");
-
-    v_seqr = virtual_sequencer::type_id::create("v_seqr", this);
+    aes_cfg               = aes_cfg_type::type_id::create("aes_cfg");
 
     if(!uvm_config_db#(env_config)::get(this, "", "ENV_CFG", env_cfg))
         `uvm_fatal("build_phase", "ENV - Unable to environment configuration object from the uvm_config_db")
@@ -200,9 +206,16 @@ function void bridge_env::connect_phase(uvm_phase phase);
     apb_controller_agt_1.mntr_ap.connect(aes_sb.expt_in);
     aes_agt.mntr_ap.connect(aes_sb.expt_out);
 
-    v_seqr.apb_seqr_1 = apb_agt_1.seqr;
-    v_seqr.apb_seqr_2 = apb_agt_2.seqr;
 endfunction : connect_phase
+
+// get_sequencers
+// ----------------
+
+function void bridge_env::get_sequencers(); 
+    sqrs.add("apb_seqr_1", apb_agt_1.get_sequencer());
+    sqrs.add("apb_seqr_2", apb_agt_2.get_sequencer());
+endfunction : get_sequencers
+
 
 // configure_agents
 // ----------------

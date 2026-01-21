@@ -30,15 +30,15 @@ class virtual_sequence extends virtual_sequence_base;
 
     // Task: pre_body
     //
-    // Creates instances of child reactive sequences before body execution.
+    // Creates instances of child reactive sequences before body execution, 
+    // and sets the subsequencers handles from the sequencer pool
 
     extern task pre_body();
 
 
     // Task: body
     //
-    // Retrieves sequencer handles via base class, then starts both reactive
-    // sequences on their respective sequencers sequentially.
+    // Starts both reactive sequences on their respective sequencers sequentially.
 
     extern task body();
 
@@ -69,13 +69,14 @@ endfunction : new
 task virtual_sequence::pre_body();
     apb_seq_1   = APB_reactive_sequence_1::type_id::create("apb_seq_1");
     apb_seq_2   = APB_reactive_sequence_2::type_id::create("apb_seq_2");
-endtask
+ 
+    set_sqr_handles();
+endtask : pre_body
 
 // body
 // ----
 
 task virtual_sequence::body();
-    super.body();
     apb_seq_1.start(apb_seqr_1);
     apb_seq_2.start(apb_seqr_2);
 endtask : body

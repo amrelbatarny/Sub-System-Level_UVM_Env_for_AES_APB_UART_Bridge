@@ -21,10 +21,13 @@
 class bridge_test_base extends uvm_test;
     `uvm_component_utils(bridge_test_base)
 
+    typedef sequencer_pool #(uvm_sequencer_base) sqr_pool_type;
+
     bridge_env env;
     env_config env_cfg;
     virtual_sequence v_seq;
-    uvm_factory factory;
+    uvm_factory factory = uvm_coreservice_t::get().get_factory();
+    sqr_pool_type sqrs  = sqr_pool_type::get_global_pool();
 
 
     // Function: new
@@ -89,7 +92,6 @@ endclass : bridge_test_base
 
 function bridge_test_base::new(string name = "bridge_test_base", uvm_component parent = null);
     super.new(name, parent);
-    factory = uvm_coreservice_t::get().get_factory();
 endfunction : new
 
 // build_phase
@@ -127,9 +129,14 @@ endfunction : build_phase
 
 function void bridge_test_base::end_of_elaboration_phase(uvm_phase phase);
     super.end_of_elaboration_phase(phase);
+
+    env.get_sequencers();
     
     v_seq = virtual_sequence::type_id::create("v_seq", this);
-    uvm_top.print_topology(); // Prints entire testbench hierarchy 
+    
+    if (uvm_report_enabled(UVM_HIGH)) begin 
+        this.print();
+    end 
 endfunction : end_of_elaboration_phase
 
 // start_of_simulation_phase
@@ -137,6 +144,10 @@ endfunction : end_of_elaboration_phase
 
 function void bridge_test_base::start_of_simulation_phase(uvm_phase phase);
     super.start_of_simulation_phase(phase);
+
+    // if (uvm_report_enabled(UVM_HIGH)) begin 
+        // sqrs.dump();
+    // end
     
     `uvm_info("start_of_simulation_phase", $sformatf("=============== Start of %s ===============", this.get_type_name()), UVM_MEDIUM)
 endfunction : start_of_simulation_phase
@@ -150,7 +161,7 @@ task bridge_test_base::run_phase(uvm_phase phase);
     phase.raise_objection(this);
     
     `uvm_info(get_type_name(), $sformatf("Starting sequence: %s", v_seq.get_type_name()), UVM_MEDIUM)
-    v_seq.start(env.v_seqr); ///////////////// **************
+    v_seq.start(null); ///////////////// **************
     `uvm_info(get_type_name(), $sformatf("Finished sequence: %s", v_seq.get_type_name()), UVM_MEDIUM)
 
     phase.drop_objection(this);
@@ -162,6 +173,10 @@ endtask : run_phase
 function void bridge_test_base::final_phase(uvm_phase phase);
     super.final_phase(phase);
     
-    factory.print(0);
+    if (uvm_report_enabled(UVM_HIGH)) begin 
+        factory.print();
+        sqrs.dump();
+    end
+
     `uvm_info("start_of_simulation_phase", $sformatf("=============== End of %s ===============", this.get_type_name()), UVM_MEDIUM)
 endfunction : final_phase

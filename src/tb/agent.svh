@@ -37,7 +37,7 @@ class agent #(
     ) extends uvm_agent;
 
     INTF_T                      bfm;
-    SEQR_T                      seqr;
+    local SEQR_T                seqr;
     DRVR_T                      drvr;
     MNTR_T                      mntr;
     agent_config      #(INTF_T) cfg;
@@ -73,6 +73,12 @@ class agent #(
     // connects driver to sequencer, assigns interface, and connects driver analysis port.
 
     extern function void connect_phase(uvm_phase phase);
+
+    // Function: get_sequencer
+    //
+    // Returns a handle to this agent's sequencer for storage in the sequencer pool.
+
+    extern function uvm_sequencer_base get_sequencer();
 
 endclass : agent
 
@@ -132,3 +138,10 @@ function void agent::connect_phase(uvm_phase phase);
         drvr.ap.connect(drvr_ap);
     end
 endfunction : connect_phase
+
+// get_sequencer
+// -------------
+
+function uvm_sequencer_base agent::get_sequencer();
+    return seqr; 
+endfunction : get_sequencer

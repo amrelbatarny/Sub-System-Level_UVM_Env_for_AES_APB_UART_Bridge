@@ -23,9 +23,12 @@ typedef class APB_reactive_sequence_2;
 class virtual_sequence_base extends uvm_sequence;
     `uvm_object_utils(virtual_sequence_base)
 
-    virtual_sequencer                    v_seqr;
-    APB_sequencer #(APB_sequence_item_1) apb_seqr_1;
-    APB_sequencer #(APB_sequence_item_2) apb_seqr_2;
+    typedef sequencer_pool #(uvm_sequencer_base) sqr_pool_type;
+
+    uvm_sequencer_base apb_seqr_1;
+    uvm_sequencer_base apb_seqr_2;
+
+    sqr_pool_type sqrs = sqr_pool_type::get_global_pool();
 
     APB_reactive_sequence_1 apb_seq_1;
     APB_reactive_sequence_2 apb_seq_2;
@@ -37,13 +40,7 @@ class virtual_sequence_base extends uvm_sequence;
 
     extern function new(string name = "virtual_sequence_base");
 
-
-    // Task: body
-    //
-    // Retrieves virtual sequencer handle and extracts child sequencer references
-    // for use by derived sequence implementations.
-
-    extern task body();
+    extern function void set_sqr_handles();
 
 endclass : virtual_sequence_base
 
@@ -66,11 +63,10 @@ function virtual_sequence_base::new(string name = "virtual_sequence_base");
     super.new(name);
 endfunction : new
 
-// body
+// set_sqr_handles
 // ----
 
-task virtual_sequence_base::body();
-    $cast(v_seqr, m_sequencer);
-    apb_seqr_1 = v_seqr.apb_seqr_1;
-    apb_seqr_2 = v_seqr.apb_seqr_2;
-endtask : body
+function void virtual_sequence_base::set_sqr_handles();
+    apb_seqr_1 = sqrs.get("apb_seqr_1");
+    apb_seqr_2 = sqrs.get("apb_seqr_2");
+endfunction

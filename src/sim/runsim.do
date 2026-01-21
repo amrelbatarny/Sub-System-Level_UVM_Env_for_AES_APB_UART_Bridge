@@ -1,6 +1,6 @@
 vlib work
 vlog -f src_files.f -mfcu +cover +define+SIM
-vsim -voptargs=+acc work.bridge_top -classdebug -uvmcontrol=all -cover +UVM_VERBOSITY=UVM_MEDIUM +UVM_NO_RELNOTES +UVM_TESTNAME=bridge_test_base
+vsim -voptargs=+acc work.bridge_top -classdebug -uvmcontrol=all -cover +UVM_VERBOSITY=UVM_HIGH +UVM_NO_RELNOTES +UVM_TESTNAME=bridge_test_base
 set NoQuitOnFinish 1
 
 # AES Bridge clock & reset
