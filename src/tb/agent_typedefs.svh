@@ -14,6 +14,7 @@ typedef class APB_driver_1;
 typedef class APB_driver_2;
 typedef class APB_monitor;
 typedef class APB_sequencer;
+typedef class AES_sequencer;
 typedef class APB_sequence_item_1;
 typedef class APB_sequence_item_2;
 typedef class APB_controller_sequence_item;
@@ -80,7 +81,7 @@ typedef agent #(
 .CFG_NAME("AES_OUT_AGT_CFG"),
 .AGT_NAME("AES_agent"),
 .INTF_T(virtual AES_if),
-.SEQR_T(APB_sequencer #(AES_sequence_item)),
+.SEQR_T(AES_sequencer),
 .DRVR_T(dummy_driver #(AES_sequence_item, virtual AES_if)),
 .MNTR_T(AES_monitor),
 .ITEM_T(AES_sequence_item)
