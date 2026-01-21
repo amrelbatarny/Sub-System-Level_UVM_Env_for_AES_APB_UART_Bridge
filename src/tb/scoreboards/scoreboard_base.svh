@@ -28,7 +28,6 @@ class scoreboard_base #(type ITEM_IN_T, ITEM_OUT_T) extends uvm_scoreboard;
     // (Export <-> FIFO) for transactions fed to the block as input transactions
     uvm_analysis_export #(ITEM_IN_T) expt_in;
     uvm_tlm_analysis_fifo #(ITEM_IN_T) fifo_in;
-
     // (Export <-> FIFO) for transactions produced by the block as output transactions
     uvm_analysis_export #(ITEM_OUT_T) expt_out;
     uvm_tlm_analysis_fifo #(ITEM_OUT_T) fifo_out;

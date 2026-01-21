@@ -1,5 +1,6 @@
-// aes_dpi.c
+// aes_encrypt.c
 // AES encryption implementation with DPI interface for SystemVerilog
+// Note: The code in this file is AI-generated
 
 #include <stdio.h>
 #include <stdint.h>
