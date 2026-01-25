@@ -103,25 +103,25 @@ function void bridge_test_base::build_phase(uvm_phase phase);
     env = bridge_env::type_id::create("env", this);
     env_cfg = env_config::type_id::create("env_cfg", this);
 
-    if(!uvm_config_db#(virtual SYSCTRL_bfm)::get(this, "",       "SYSCTRL_BFM",        env_cfg.sysctrl_bfm))
-        `uvm_fatal("build_phase", "TEST - Unable to get the SYSCTRL_BFM from the uvm_config_db")
+    if(!uvm_resource_db#(virtual SYSCTRL_bfm)::read_by_name(get_full_name(),       "SYSCTRL_BFM", env_cfg.sysctrl_bfm, this))
+        `uvm_fatal("build_phase", "TEST - Unable to read_by_name the SYSCTRL_BFM from the uvm_resource_db")
 
-    if(!uvm_config_db#(virtual APB_bfm)::get(this, "",           "APB_BFM_1",          env_cfg.apb_bfm_1))
-        `uvm_fatal("build_phase", "TEST - Unable to get the APB_BFM_1 from the uvm_config_db")
+    if(!uvm_resource_db#(virtual APB_bfm)::read_by_name(get_full_name(),           "APB_BFM_1",   env_cfg.apb_bfm_1, this))
+        `uvm_fatal("build_phase", "TEST - Unable to read_by_name the APB_BFM_1 from the uvm_resource_db")
 
-    if(!uvm_config_db#(virtual APB_bfm)::get(this, "",           "APB_BFM_2",          env_cfg.apb_bfm_2))
-        `uvm_fatal("build_phase", "TEST - Unable to get the APB_BFM_2 from the uvm_config_db")
+    if(!uvm_resource_db#(virtual APB_bfm)::read_by_name(get_full_name(),           "APB_BFM_2",   env_cfg.apb_bfm_2, this))
+        `uvm_fatal("build_phase", "TEST - Unable to read_by_name the APB_BFM_2 from the uvm_resource_db")
 
-    if(!uvm_config_db#(virtual AES_if)::get(this, "",            "AES_IF",             env_cfg.aes_if))
-        `uvm_fatal("build_phase", "TEST - Unable to get the AES_IF from the uvm_config_db")
+    if(!uvm_resource_db#(virtual AES_if)::read_by_name(get_full_name(),            "AES_IF",      env_cfg.aes_if, this))
+        `uvm_fatal("build_phase", "TEST - Unable to read_by_name the AES_IF from the uvm_resource_db")
 
-    if(!uvm_config_db#(virtual APB_controller_if)::get(this, "", "APB_CTRL_1",     env_cfg.apb_controller_if_1))
-        `uvm_fatal("build_phase", "TEST - Unable to get the APB_CTRL_1 from the uvm_config_db")
+    if(!uvm_resource_db#(virtual APB_controller_if)::read_by_name(get_full_name(), "APB_CTRL_1",  env_cfg.apb_controller_if_1, this))
+        `uvm_fatal("build_phase", "TEST - Unable to read_by_name the APB_CTRL_1 from the uvm_resource_db")
 
-    if(!uvm_config_db#(virtual APB_controller_if)::get(this, "", "APB_CTRL_2",     env_cfg.apb_controller_if_2))
-        `uvm_fatal("build_phase", "TEST - Unable to get the APB_CTRL_2 from the uvm_config_db")
+    if(!uvm_resource_db#(virtual APB_controller_if)::read_by_name(get_full_name(), "APB_CTRL_2",  env_cfg.apb_controller_if_2, this))
+        `uvm_fatal("build_phase", "TEST - Unable to read_by_name the APB_CTRL_2 from the uvm_resource_db")
 
-    uvm_config_db#(env_config)::set(this, "env", "ENV_CFG", env_cfg);
+    uvm_resource_db#(env_config)::set({get_full_name(), ".env"}, "ENV_CFG", env_cfg, this);
 endfunction : build_phase
 
 // end_of_elaboration_phase

@@ -107,8 +107,8 @@ endfunction : new
 function void agent::build_phase(uvm_phase phase);
     super.build_phase(phase);
 
-    if(!uvm_config_db#(agent_config #(INTF_T))::get(this, "", CFG_NAME, cfg))
-        `uvm_fatal("build_phase", $sformatf("AGENT - Unable to get the agent configuration object from the uvm_config_db, CFG_NAME: %s, agent name: %s", CFG_NAME, this.get_full_name()))
+    if(!uvm_resource_db#(agent_config #(INTF_T))::read_by_name(get_full_name(), CFG_NAME, cfg, this))
+        `uvm_fatal("build_phase", $sformatf("AGENT - Unable to read_by_name the agent configuration object from the uvm_resource_db, CFG_NAME: %s, agent name: %s", CFG_NAME, this.get_full_name()))
 
     mntr = MNTR_T::type_id::create("mntr", this);
 

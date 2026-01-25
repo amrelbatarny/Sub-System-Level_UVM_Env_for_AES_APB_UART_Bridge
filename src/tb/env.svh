@@ -173,17 +173,17 @@ function void bridge_env::build_phase(uvm_phase phase);
     apb_controller_cfg_2  = apb_controller_cfg_type::type_id::create("apb_controller_cfg_2");
     aes_cfg               = aes_cfg_type::type_id::create("aes_cfg");
 
-    if(!uvm_config_db#(env_config)::get(this, "", "ENV_CFG", env_cfg))
-        `uvm_fatal("build_phase", "ENV - Unable to environment configuration object from the uvm_config_db")
+    if(!uvm_resource_db#(env_config)::read_by_name(get_full_name(), "ENV_CFG", env_cfg, this))
+        `uvm_fatal("build_phase", "ENV - Unable to read_by_name environment configuration object from the uvm_resource_db")
 
     configure_agents();
 
-    uvm_config_db#(sysctrl_cfg_type)::set(this, "sysctrl_agt", "SYSCTRL_AGT_CFG", sysctrl_cfg);
-    uvm_config_db#(apb_cfg_1_type)::set(this, "apb_agt_1", "APB_AGT_CFG_1", apb_cfg_1);
-    uvm_config_db#(apb_cfg_2_type)::set(this, "apb_agt_2", "APB_AGT_CFG_2", apb_cfg_2);
-    uvm_config_db#(apb_controller_cfg_type)::set(this, "apb_controller_agt_1", "APB_CTRL_OUT_AGT_CFG_1", apb_controller_cfg_1);
-    uvm_config_db#(apb_controller_cfg_type)::set(this, "apb_controller_agt_2", "APB_CTRL_OUT_AGT_CFG_2", apb_controller_cfg_2);
-    uvm_config_db#(aes_cfg_type)::set(this, "aes_agt", "AES_OUT_AGT_CFG", aes_cfg);
+    uvm_resource_db#(sysctrl_cfg_type)::set({get_full_name(), ".sysctrl_agt"}, "SYSCTRL_AGT_CFG", sysctrl_cfg, this);
+    uvm_resource_db#(apb_cfg_1_type)::set({get_full_name(), ".apb_agt_1"}, "APB_AGT_CFG_1", apb_cfg_1, this);
+    uvm_resource_db#(apb_cfg_2_type)::set({get_full_name(), ".apb_agt_2"}, "APB_AGT_CFG_2", apb_cfg_2, this);
+    uvm_resource_db#(apb_controller_cfg_type)::set({get_full_name(), ".apb_controller_agt_1"}, "APB_CTRL_OUT_AGT_CFG_1", apb_controller_cfg_1, this);
+    uvm_resource_db#(apb_controller_cfg_type)::set({get_full_name(), ".apb_controller_agt_2"}, "APB_CTRL_OUT_AGT_CFG_2", apb_controller_cfg_2, this);
+    uvm_resource_db#(aes_cfg_type)::set({get_full_name(), ".aes_agt"}, "AES_OUT_AGT_CFG", aes_cfg, this);
 endfunction : build_phase
 
 // connect_phase

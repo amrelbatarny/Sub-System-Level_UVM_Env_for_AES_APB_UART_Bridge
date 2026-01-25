@@ -82,12 +82,12 @@ module bridge_top;
     );
 
     initial begin
-        uvm_config_db#(virtual SYSCTRL_bfm)::set(null,       "uvm_test_top", "SYSCTRL_BFM", sysctrl_bfm);
-        uvm_config_db#(virtual APB_bfm)::set(null,           "uvm_test_top", "APB_BFM_1",   apb_bfm_1);
-        uvm_config_db#(virtual APB_bfm)::set(null,           "uvm_test_top", "APB_BFM_2",   apb_bfm_2);
-        uvm_config_db#(virtual AES_if)::set(null,            "uvm_test_top", "AES_IF",      AES_APB_UART_Bridge_inst.aes_if);
-        uvm_config_db#(virtual APB_controller_if)::set(null, "uvm_test_top", "APB_CTRL_1",  AES_APB_UART_Bridge_inst.apb_controller_if_1);
-        uvm_config_db#(virtual APB_controller_if)::set(null, "uvm_test_top", "APB_CTRL_2",  AES_APB_UART_Bridge_inst.apb_controller_if_2);
+        uvm_resource_db#(virtual SYSCTRL_bfm)::set("uvm_test_top",       "SYSCTRL_BFM", sysctrl_bfm);
+        uvm_resource_db#(virtual APB_bfm)::set("uvm_test_top",           "APB_BFM_1",   apb_bfm_1);
+        uvm_resource_db#(virtual APB_bfm)::set("uvm_test_top",           "APB_BFM_2",   apb_bfm_2);
+        uvm_resource_db#(virtual AES_if)::set("uvm_test_top",            "AES_IF",      AES_APB_UART_Bridge_inst.aes_if);
+        uvm_resource_db#(virtual APB_controller_if)::set("uvm_test_top", "APB_CTRL_1",  AES_APB_UART_Bridge_inst.apb_controller_if_1);
+        uvm_resource_db#(virtual APB_controller_if)::set("uvm_test_top", "APB_CTRL_2",  AES_APB_UART_Bridge_inst.apb_controller_if_2);
         run_test();
     end
 endmodule : bridge_top

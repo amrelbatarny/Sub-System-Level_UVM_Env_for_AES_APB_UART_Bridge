@@ -38,7 +38,9 @@ run:
 	@echo "GUI mode: $(GUI)"
 	@echo "Coverage: $(COVERAGE)"
 	@echo "Script: $(TEMP_DO_FILE)"
+ifeq ($(GUI),0)
 	@echo "Log file: $(LOG_FILE)"
+endif
 	@echo "=========================================="
 	@cp $(DO_FILE) $(TEMP_DO_FILE)
 ifeq ($(GUI),0)
@@ -58,13 +60,17 @@ endif
 	@echo "=========================================="
 ifeq ($(GUI),0)
 	@vsim -c -do $(TEMP_DO_FILE) 2>&1 | tee $(LOG_FILE)
-else
-	@vsim -do $(TEMP_DO_FILE) 2>&1 | tee $(LOG_FILE)
-endif
 	@echo "=========================================="
 	@echo "Simulation complete!"
 	@echo "Script: $(TEMP_DO_FILE)"
 	@echo "Log: $(LOG_FILE)"
+else
+	@vsim -gui -do $(TEMP_DO_FILE)
+	@echo "=========================================="
+	@echo "GUI simulation complete!"
+	@echo "Script: $(TEMP_DO_FILE)"
+	@echo "Note: GUI mode does not save logs automatically"
+endif
 	@echo "=========================================="
 
 clean:
