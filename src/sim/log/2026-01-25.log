@@ -1,0 +1,553 @@
+Reading pref.tcl
+
+# 2021.1
+
+# do runsim_2026-01-25.do
+# QuestaSim-64 vlog 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 09:58:35 on Jan 25,2026
+# vlog -f src_files.f -mfcu "+cover" "+define+SIM" 
+# -- Compiling package shared_pkg
+# -- Compiling module APB_Master
+# -- Importing package shared_pkg
+# -- Compiling module APB_Controller
+# -- Compiling module AES_APB_UART_Bridge
+# -- Compiling module MUX
+# -- Compiling module baud_rate_gen
+# -- Compiling module transmitter
+# -- Compiling module UART
+# -- Compiling module UART_Controller
+# -- Compiling module fifo
+# -- Compiling module fifo_ctrl
+# -- Compiling module reg_file
+# -- Compiling module pos_edge_det
+# -- Compiling module APB_RegFile_Wrapper
+# -- Compiling module APB_Slave
+# -- Compiling module RegisterFile
+# -- Compiling module encryptRound
+# -- Compiling module mixColumns
+# -- Compiling module sbox
+# -- Compiling module shiftRows
+# -- Compiling module subBytes
+# -- Compiling module addRoundKey
+# -- Compiling module keyExpansion
+# -- Compiling module AES_Encrypt
+# ** Note: (vlog-2286) ../tb/bridge_pkg.sv(4): Using implicit +incdir+C:/questasim64_2021.1/uvm-1.2/../verilog_src/uvm-1.2/src from import uvm_pkg
+# -- Compiling package shared_pkg_sv_unit
+# -- Importing package shared_pkg
+# -- Compiling interface APB_controller_if
+# -- Compiling interface AES_if
+# -- Compiling interface SYSCTRL_bfm
+# -- Compiling interface APB_bfm
+# -- Compiling package bridge_pkg
+# -- Importing package mtiUvm.uvm_pkg (uvm-1.2 Built-in)
+# -- Compiling module bridge_top
+# -- Importing package bridge_pkg
+# 
+# Top level modules:
+# 	bridge_top
+# ** Note: (vlog-7082) For C/C++ auto compile, choosing compiler C:\mingw64\bin\gcc.exe set from the PATH environment variable.
+# -- Compiling DPI/PLI C file ../tb/aes_encrypt.c
+# End time: 09:58:39 on Jan 25,2026, Elapsed time: 0:00:04
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" work.bridge_top -classdebug -uvmcontrol=all -coverage "+UVM_VERBOSITY=UVM_HIGH" "+UVM_NO_RELNOTES" "+UVM_TESTNAME=bridge_test_base" 
+# Start time: 09:58:39 on Jan 25,2026
+# Loading C:/Users/20122/AppData/Local/Temp\amrelbatarny@AMRELBATARNY_dpi_17484\win64_gcc-15.2.0\export_tramp.dll
+# ** Note: (vsim-3812) Design is being optimized...
+# ** Note: (vopt-143) Recognized 1 FSM in module "APB_Controller(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "UART_Controller(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "transmitter(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "APB_Master(fast)".
+# ** Note: (vopt-143) Recognized 1 FSM in module "APB_Slave(fast)".
+# //  Questa Sim-64
+# //  Version 2021.1 win64 Jan 19 2021
+# //
+# //  Copyright 1991-2021 Mentor Graphics Corporation
+# //  All Rights Reserved.
+# //
+# //  QuestaSim and its associated documentation contain trade
+# //  secrets and commercial or financial information that are the property of
+# //  Mentor Graphics Corporation and are privileged, confidential,
+# //  and exempt from disclosure under the Freedom of Information Act,
+# //  5 U.S.C. Section 552. Furthermore, this information
+# //  is prohibited from disclosure under the Trade Secrets Act,
+# //  18 U.S.C. Section 1905.
+# //
+# Loading sv_std.std
+# Loading work.SYSCTRL_bfm(fast)
+# Loading work.APB_bfm(fast)
+# Loading work.APB_controller_if(fast)
+# Loading work.AES_if(fast)
+# Loading work.shared_pkg(fast)
+# Loading mtiUvm.uvm_pkg(fast)
+# Loading work.bridge_pkg(fast)
+# Loading mtiUvm.questa_uvm_pkg(fast)
+# Loading work.shared_pkg_sv_unit(fast)
+# Loading work.bridge_top(fast)
+# Loading work.SYSCTRL_bfm(fast__2)
+# Loading work.APB_bfm(fast__2)
+# Loading work.APB_bfm(fast__3)
+# Loading work.AES_APB_UART_Bridge(fast)
+# Loading work.MUX(fast)
+# Loading work.MUX(fast__1)
+# Loading work.UART(fast)
+# Loading work.baud_rate_gen(fast)
+# Loading work.fifo(fast)
+# Loading work.reg_file(fast)
+# Loading work.fifo_ctrl(fast)
+# Loading work.transmitter(fast)
+# Loading work.UART_Controller(fast)
+# Loading work.AES_Encrypt(fast)
+# Loading work.keyExpansion(fast)
+# Loading work.addRoundKey(fast)
+# Loading work.encryptRound(fast)
+# Loading work.subBytes(fast)
+# Loading work.sbox(fast)
+# Loading work.shiftRows(fast)
+# Loading work.mixColumns(fast)
+# Loading work.pos_edge_det(fast)
+# Loading work.APB_Controller(fast)
+# Loading work.APB_Master(fast)
+# Loading work.APB_RegFile_Wrapper(fast)
+# Loading work.RegisterFile(fast)
+# Loading work.APB_Slave(fast)
+# Loading work.AES_if(fast__2)
+# Loading work.APB_controller_if(fast__2)
+# ** Note: (vsim-7082) For C/C++ auto compile, choosing compiler C:\mingw64\bin\gcc.exe set from the PATH environment variable.
+# Compiling C:/Users/20122/AppData/Local/Temp\amrelbatarny@AMRELBATARNY_dpi_17484\win64_gcc-15.2.0\exportwrapper.c
+# Loading C:/Users/20122/AppData/Local/Temp\amrelbatarny@AMRELBATARNY_dpi_17484\win64_gcc-15.2.0\vsim_auto_compile.dll
+# Loading C:/questasim64_2021.1/uvm-1.2\win64\uvm_dpi.dll
+# 1
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(277) @ 0: reporter [Questa UVM] QUESTA_UVM-1.2.3
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(278) @ 0: reporter [Questa UVM]  questa_uvm::init(all)
+# UVM_INFO @ 0: reporter [RNTST] Running test bridge_test_base...
+# -------------------------------------------------------------------------
+# Name                        Type                        Size  Value      
+# -------------------------------------------------------------------------
+# uvm_test_top                bridge_test_base            -     @382       
+#   env                       bridge_env                  -     @395       
+#     aes_agt                 uvm_agent                   -     @494       
+#       mntr                  uvm_monitor                 -     @534       
+#         ap                  uvm_analysis_port           -     @551       
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       mntr_ap               uvm_analysis_port           -     @542       
+#         recording_detail    integral                    32    'd1        
+#       is_active             uvm_active_passive_enum     1     UVM_PASSIVE
+#       recording_detail      integral                    32    'd1        
+#     aes_sb                  AES_scoreboard              -     @446       
+#       expt_in               uvm_analysis_export         -     @560       
+#         recording_detail    integral                    32    'd1        
+#       expt_out              uvm_analysis_export         -     @622       
+#         recording_detail    integral                    32    'd1        
+#       fifo_in               uvm_tlm_analysis_fifo #(T)  -     @569       
+#         analysis_export     uvm_analysis_imp            -     @613       
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @604       
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @586       
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @595       
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @577       
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       fifo_out              uvm_tlm_analysis_fifo #(T)  -     @631       
+#         analysis_export     uvm_analysis_imp            -     @675       
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @666       
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @648       
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @657       
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @639       
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       recording_detail      integral                    32    'd1        
+#     apb_agt_1               uvm_agent                   -     @462       
+#       drvr                  uvm_driver #(REQ,RSP)       -     @697       
+#         ap                  uvm_analysis_port           -     @864       
+#           recording_detail  integral                    32    'd1        
+#         rsp_port            uvm_analysis_port           -     @714       
+#           recording_detail  integral                    32    'd1        
+#         seq_item_port       uvm_seq_item_pull_port      -     @705       
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       drvr_ap               uvm_analysis_port           -     @846       
+#         recording_detail    integral                    32    'd1        
+#       mntr                  uvm_monitor                 -     @689       
+#         ap                  uvm_analysis_port           -     @873       
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       mntr_ap               uvm_analysis_port           -     @855       
+#         recording_detail    integral                    32    'd1        
+#       seqr                  uvm_sequencer               -     @723       
+#         rsp_export          uvm_analysis_export         -     @731       
+#           recording_detail  integral                    32    'd1        
+#         seq_item_export     uvm_seq_item_pull_imp       -     @837       
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#         arbitration_queue   array                       0     -          
+#         lock_queue          array                       0     -          
+#         num_last_reqs       integral                    32    'd1        
+#         num_last_rsps       integral                    32    'd1        
+#       is_active             uvm_active_passive_enum     1     UVM_ACTIVE 
+#       recording_detail      integral                    32    'd1        
+#     apb_agt_2               uvm_agent                   -     @470       
+#       drvr                  uvm_driver #(REQ,RSP)       -     @900       
+#         ap                  uvm_analysis_port           -     @1067      
+#           recording_detail  integral                    32    'd1        
+#         rsp_port            uvm_analysis_port           -     @917       
+#           recording_detail  integral                    32    'd1        
+#         seq_item_port       uvm_seq_item_pull_port      -     @908       
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       drvr_ap               uvm_analysis_port           -     @1049      
+#         recording_detail    integral                    32    'd1        
+#       mntr                  uvm_monitor                 -     @892       
+#         ap                  uvm_analysis_port           -     @1076      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       mntr_ap               uvm_analysis_port           -     @1058      
+#         recording_detail    integral                    32    'd1        
+#       seqr                  uvm_sequencer               -     @926       
+#         rsp_export          uvm_analysis_export         -     @934       
+#           recording_detail  integral                    32    'd1        
+#         seq_item_export     uvm_seq_item_pull_imp       -     @1040      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#         arbitration_queue   array                       0     -          
+#         lock_queue          array                       0     -          
+#         num_last_reqs       integral                    32    'd1        
+#         num_last_rsps       integral                    32    'd1        
+#       is_active             uvm_active_passive_enum     1     UVM_ACTIVE 
+#       recording_detail      integral                    32    'd1        
+#     apb_controller_agt_1    uvm_agent                   -     @478       
+#       mntr                  uvm_monitor                 -     @1095      
+#         ap                  uvm_analysis_port           -     @1112      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       mntr_ap               uvm_analysis_port           -     @1103      
+#         recording_detail    integral                    32    'd1        
+#       is_active             uvm_active_passive_enum     1     UVM_PASSIVE
+#       recording_detail      integral                    32    'd1        
+#     apb_controller_agt_2    uvm_agent                   -     @486       
+#       mntr                  uvm_monitor                 -     @1126      
+#         ap                  uvm_analysis_port           -     @1143      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       mntr_ap               uvm_analysis_port           -     @1134      
+#         recording_detail    integral                    32    'd1        
+#       is_active             uvm_active_passive_enum     1     UVM_PASSIVE
+#       recording_detail      integral                    32    'd1        
+#     apb_ctrl_sb_1           uvm_scoreboard              -     @430       
+#       expt_in               uvm_analysis_export         -     @1152      
+#         recording_detail    integral                    32    'd1        
+#       expt_out              uvm_analysis_export         -     @1214      
+#         recording_detail    integral                    32    'd1        
+#       fifo_in               uvm_tlm_analysis_fifo #(T)  -     @1161      
+#         analysis_export     uvm_analysis_imp            -     @1205      
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @1196      
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @1178      
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @1187      
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @1169      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       fifo_out              uvm_tlm_analysis_fifo #(T)  -     @1223      
+#         analysis_export     uvm_analysis_imp            -     @1267      
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @1258      
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @1240      
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @1249      
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @1231      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       recording_detail      integral                    32    'd1        
+#     apb_ctrl_sb_2           uvm_scoreboard              -     @438       
+#       expt_in               uvm_analysis_export         -     @1276      
+#         recording_detail    integral                    32    'd1        
+#       expt_out              uvm_analysis_export         -     @1338      
+#         recording_detail    integral                    32    'd1        
+#       fifo_in               uvm_tlm_analysis_fifo #(T)  -     @1285      
+#         analysis_export     uvm_analysis_imp            -     @1329      
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @1320      
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @1302      
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @1311      
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @1293      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       fifo_out              uvm_tlm_analysis_fifo #(T)  -     @1347      
+#         analysis_export     uvm_analysis_imp            -     @1391      
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @1382      
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @1364      
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @1373      
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @1355      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       recording_detail      integral                    32    'd1        
+#     apb_sb_1                uvm_scoreboard              -     @414       
+#       expt_in               uvm_analysis_export         -     @1400      
+#         recording_detail    integral                    32    'd1        
+#       expt_out              uvm_analysis_export         -     @1462      
+#         recording_detail    integral                    32    'd1        
+#       fifo_in               uvm_tlm_analysis_fifo #(T)  -     @1409      
+#         analysis_export     uvm_analysis_imp            -     @1453      
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @1444      
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @1426      
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @1435      
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @1417      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       fifo_out              uvm_tlm_analysis_fifo #(T)  -     @1471      
+#         analysis_export     uvm_analysis_imp            -     @1515      
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @1506      
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @1488      
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @1497      
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @1479      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       recording_detail      integral                    32    'd1        
+#     apb_sb_2                uvm_scoreboard              -     @422       
+#       expt_in               uvm_analysis_export         -     @1524      
+#         recording_detail    integral                    32    'd1        
+#       expt_out              uvm_analysis_export         -     @1586      
+#         recording_detail    integral                    32    'd1        
+#       fifo_in               uvm_tlm_analysis_fifo #(T)  -     @1533      
+#         analysis_export     uvm_analysis_imp            -     @1577      
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @1568      
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @1550      
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @1559      
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @1541      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       fifo_out              uvm_tlm_analysis_fifo #(T)  -     @1595      
+#         analysis_export     uvm_analysis_imp            -     @1639      
+#           recording_detail  integral                    32    'd1        
+#         get_ap              uvm_analysis_port           -     @1630      
+#           recording_detail  integral                    32    'd1        
+#         get_peek_export     uvm_get_peek_imp            -     @1612      
+#           recording_detail  integral                    32    'd1        
+#         put_ap              uvm_analysis_port           -     @1621      
+#           recording_detail  integral                    32    'd1        
+#         put_export          uvm_put_imp                 -     @1603      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       recording_detail      integral                    32    'd1        
+#     sysctrl_agt             uvm_agent                   -     @454       
+#       drvr                  SYSCTRL_driver              -     @1661      
+#         ap                  uvm_analysis_port           -     @1828      
+#           recording_detail  integral                    32    'd1        
+#         rsp_port            uvm_analysis_port           -     @1678      
+#           recording_detail  integral                    32    'd1        
+#         seq_item_port       uvm_seq_item_pull_port      -     @1669      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       drvr_ap               uvm_analysis_port           -     @1810      
+#         recording_detail    integral                    32    'd1        
+#       mntr                  SYSCTRL_monitor             -     @1653      
+#         ap                  uvm_analysis_port           -     @1837      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#       mntr_ap               uvm_analysis_port           -     @1819      
+#         recording_detail    integral                    32    'd1        
+#       seqr                  SYSCTRL_sequencer           -     @1687      
+#         rsp_export          uvm_analysis_export         -     @1695      
+#           recording_detail  integral                    32    'd1        
+#         seq_item_export     uvm_seq_item_pull_imp       -     @1801      
+#           recording_detail  integral                    32    'd1        
+#         recording_detail    integral                    32    'd1        
+#         arbitration_queue   array                       0     -          
+#         lock_queue          array                       0     -          
+#         num_last_reqs       integral                    32    'd1        
+#         num_last_rsps       integral                    32    'd1        
+#       is_active             uvm_active_passive_enum     1     UVM_ACTIVE 
+#       recording_detail      integral                    32    'd1        
+#     recording_detail        integral                    32    'd1        
+#   recording_detail          integral                    32    'd1        
+# -------------------------------------------------------------------------
+# UVM_INFO verilog_src/questa_uvm_pkg-1.2/src/questa_uvm_pkg.sv(339) @ 0: reporter [Questa UVM] End Of Elaboration
+# 
+# --- SEQUENCER POOL ENTRIES -------
+# apb_seqr_1 : uvm_test_top.env.apb_agt_1.seqr
+# apb_seqr_2 : uvm_test_top.env.apb_agt_2.seqr
+# --- END SEQUENCER POOL     -------
+# 
+# UVM_INFO ../tb/bridge_test_base.svh(152) @ 0: uvm_test_top [start_of_simulation_phase] =============== Start of bridge_test_base ===============
+# UVM_INFO ../tb/bridge_test_base.svh(163) @ 0: uvm_test_top [bridge_test_base] Starting sequence: virtual_sequence
+# UVM_INFO ../tb/drivers/SYSCTRL_driver.svh(83) @ 0: uvm_test_top.env.sysctrl_agt.drvr [SYSCTRL_driver] Entered SYSCTRL_driver
+# UVM_INFO ../tb/drivers/APB_driver_base.svh(98) @ 0: uvm_test_top.env.apb_agt_2.drvr [uvm_driver #(REQ,RSP)] Entered APB_driver_base run phase
+# UVM_INFO ../tb/drivers/APB_driver_base.svh(98) @ 0: uvm_test_top.env.apb_agt_1.drvr [uvm_driver #(REQ,RSP)] Entered APB_driver_base run phase
+# **************************************************************************
+# * Questa UVM Transaction Recording Turned ON.                            *
+# * recording_detail has been set.                                         *
+# *  To turn off, set 'recording_detail' to off:                           *
+# * uvm_config_db#(int)            ::set(null, "", "recording_detail", 0); *
+# * uvm_config_db#(uvm_bitstream_t)::set(null, "", "recording_detail", 0); *
+# **************************************************************************
+# UVM_INFO ../tb/reactive_sequences/APB_sequence_base.svh(82) @ 0: uvm_test_top.env.apb_agt_1.seqr [APB_reactive_sequence_1] Entered sequence pre_body
+# UVM_INFO ../tb/reactive_sequences/APB_reactive_sequence_1.svh(74) @ 95: uvm_test_top.env.apb_agt_1.seqr [APB_reactive_sequence_1] Polling for request == 0...
+# UVM_INFO ../tb/reactive_sequences/APB_reactive_sequence_1.svh(90) @ 52439: uvm_test_top.env.apb_agt_1.seqr [APB_reactive_sequence_1] Request is 0, exiting poll loop
+# UVM_INFO ../tb/reactive_sequences/APB_sequence_base.svh(82) @ 52439: uvm_test_top.env.apb_agt_2.seqr [APB_reactive_sequence_2] Entered sequence pre_body
+# UVM_INFO ../tb/reactive_sequences/APB_reactive_sequence_2.svh(75) @ 52533: uvm_test_top.env.apb_agt_2.seqr [APB_reactive_sequence_2] Polling for request == 0...
+# UVM_INFO ../tb/reactive_sequences/APB_reactive_sequence_2.svh(92) @ 104663: uvm_test_top.env.apb_agt_2.seqr [APB_reactive_sequence_2] Request is 0, exiting poll loop
+# UVM_INFO ../tb/bridge_test_base.svh(165) @ 104663: uvm_test_top [bridge_test_base] Finished sequence: virtual_sequence
+# UVM_INFO verilog_src/uvm-1.2/src/base/uvm_objection.svh(1270) @ 104663: reporter [TEST_DONE] 'run' phase is ready to proceed to the 'extract' phase
+# UVM_INFO ../tb/monitors/AES_monitor.svh(112) @ 104663: uvm_test_top.env.aes_agt.mntr [uvm_monitor] MONITORED 4 TRANSACTIONS
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.aes_sb [TEST_SUMMARY] 
+# ===============================================
+#      TEST SUMMARY REPORT - aes_sb
+# ===============================================
+# Test Status       : PASSED
+# Total Transactions: 4
+# Correct Count     : 4
+# Error Count       : 0
+# Pass Rate         : 100.00%
+# ===============================================
+# 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.aes_sb [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO ../tb/monitors/APB_monitor_base.svh(118) @ 104663: uvm_test_top.env.apb_agt_1.mntr [uvm_monitor] MONITORED 32 TRANSACTIONS
+# UVM_INFO ../tb/monitors/APB_monitor_base.svh(118) @ 104663: uvm_test_top.env.apb_agt_2.mntr [uvm_monitor] MONITORED 32 TRANSACTIONS
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.apb_ctrl_sb_1 [TEST_SUMMARY] 
+# ===============================================
+#      TEST SUMMARY REPORT - apb_ctrl_sb_1
+# ===============================================
+# Test Status       : PASSED
+# Total Transactions: 4
+# Correct Count     : 4
+# Error Count       : 0
+# Pass Rate         : 100.00%
+# ===============================================
+# 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.apb_ctrl_sb_1 [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.apb_ctrl_sb_2 [TEST_SUMMARY] 
+# ===============================================
+#      TEST SUMMARY REPORT - apb_ctrl_sb_2
+# ===============================================
+# Test Status       : PASSED
+# Total Transactions: 4
+# Correct Count     : 4
+# Error Count       : 0
+# Pass Rate         : 100.00%
+# ===============================================
+# 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.apb_ctrl_sb_2 [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.apb_sb_1 [TEST_SUMMARY] 
+# ===============================================
+#      TEST SUMMARY REPORT - apb_sb_1
+# ===============================================
+# Test Status       : PASSED
+# Total Transactions: 16
+# Correct Count     : 16
+# Error Count       : 0
+# Pass Rate         : 100.00%
+# ===============================================
+# 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.apb_sb_1 [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(169) @ 104663: uvm_test_top.env.apb_sb_2 [TEST_SUMMARY] 
+# ===============================================
+#      TEST SUMMARY REPORT - apb_sb_2
+# ===============================================
+# Test Status       : PASSED
+# Total Transactions: 16
+# Correct Count     : 16
+# Error Count       : 0
+# Pass Rate         : 100.00%
+# ===============================================
+# 
+# UVM_INFO ../tb/scoreboards/scoreboard_base.svh(173) @ 104663: uvm_test_top.env.apb_sb_2 [TEST_RESULT] *** TEST PASSED ***
+# UVM_INFO verilog_src/uvm-1.2/src/base/uvm_factory.svh(1645) @ 104663: reporter [UVM/FACTORY/PRINT] 
+#### Factory Configuration (*)
+# 
+#   No instance or type overrides are registered with this factory
+# 
+# All types registered with the factory: 112 total
+#   Type Name
+#   ---------
+#   AES_scoreboard
+#   AES_sequence_item
+#   AES_sequencer
+#   APB_controller_sequence_item
+#   APB_reactive_sequence_1
+#   APB_reactive_sequence_2
+#   APB_sequence_item_1
+#   APB_sequence_item_2
+#   APB_sequence_item_base
+#   SYSCTRL_driver
+#   SYSCTRL_monitor
+#   SYSCTRL_sequence_item
+#   SYSCTRL_sequencer
+#   bridge_env
+#   bridge_test_base
+#   env_config
+#   questa_uvm_recorder
+#   virtual_sequence
+#   virtual_sequence_base
+# (*) Types with no associated type name will be printed as <unknown>
+# 
+####
+# 
+# 
+# 
+# --- SEQUENCER POOL ENTRIES -------
+# apb_seqr_1 : uvm_test_top.env.apb_agt_1.seqr
+# apb_seqr_2 : uvm_test_top.env.apb_agt_2.seqr
+# --- END SEQUENCER POOL     -------
+# 
+# UVM_INFO ../tb/bridge_test_base.svh(181) @ 104663: uvm_test_top [start_of_simulation_phase] =============== End of bridge_test_base ===============
+# UVM_INFO verilog_src/uvm-1.2/src/base/uvm_report_server.svh(847) @ 104663: reporter [UVM/REPORT/SERVER] 
+# --- UVM Report Summary ---
+# 
+# ** Report counts by severity
+# UVM_INFO :   32
+# UVM_WARNING :    0
+# UVM_ERROR :    0
+# UVM_FATAL :    0
+# ** Report counts by id
+# [APB_reactive_sequence_1]     3
+# [APB_reactive_sequence_2]     3
+# [Questa UVM]     3
+# [RNTST]     1
+# [SYSCTRL_driver]     1
+# [TEST_DONE]     1
+# [TEST_RESULT]     5
+# [TEST_SUMMARY]     5
+# [UVM/FACTORY/PRINT]     1
+# [bridge_test_base]     2
+# [start_of_simulation_phase]     2
+# [uvm_driver #(REQ,RSP)]     2
+# [uvm_monitor]     3
+# 
+# ** Note: $finish    : C:/questasim64_2021.1/win64/../verilog_src/uvm-1.2/src/base/uvm_root.svh(517)
+#    Time: 104663 ns  Iteration: 83  Instance: /bridge_top
+# Break in Task uvm_pkg/uvm_root::run_test at C:/questasim64_2021.1/win64/../verilog_src/uvm-1.2/src/base/uvm_root.svh line 517
+# Stopped at C:/questasim64_2021.1/win64/../verilog_src/uvm-1.2/src/base/uvm_root.svh line 517
+VSIM 2> exit
+# End time: 09:59:12 on Jan 25,2026, Elapsed time: 0:00:33
+# Errors: 0, Warnings: 0

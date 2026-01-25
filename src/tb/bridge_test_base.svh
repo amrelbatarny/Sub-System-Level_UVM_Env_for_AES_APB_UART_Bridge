@@ -115,11 +115,11 @@ function void bridge_test_base::build_phase(uvm_phase phase);
     if(!uvm_config_db#(virtual AES_if)::get(this, "",            "AES_IF",             env_cfg.aes_if))
         `uvm_fatal("build_phase", "TEST - Unable to get the AES_IF from the uvm_config_db")
 
-    if(!uvm_config_db#(virtual APB_controller_if)::get(this, "",   "APB_CTRL_OUT_1",     env_cfg.apb_controller_if_1))
-        `uvm_fatal("build_phase", "TEST - Unable to get the APB_CTRL_OUT_1 from the uvm_config_db")
+    if(!uvm_config_db#(virtual APB_controller_if)::get(this, "", "APB_CTRL_1",     env_cfg.apb_controller_if_1))
+        `uvm_fatal("build_phase", "TEST - Unable to get the APB_CTRL_1 from the uvm_config_db")
 
-    if(!uvm_config_db#(virtual APB_controller_if)::get(this, "",   "APB_CTRL_OUT_2",     env_cfg.apb_controller_if_2))
-        `uvm_fatal("build_phase", "TEST - Unable to get the APB_CTRL_OUT_2 from the uvm_config_db")
+    if(!uvm_config_db#(virtual APB_controller_if)::get(this, "", "APB_CTRL_2",     env_cfg.apb_controller_if_2))
+        `uvm_fatal("build_phase", "TEST - Unable to get the APB_CTRL_2 from the uvm_config_db")
 
     uvm_config_db#(env_config)::set(this, "env", "ENV_CFG", env_cfg);
 endfunction : build_phase
@@ -145,9 +145,9 @@ endfunction : end_of_elaboration_phase
 function void bridge_test_base::start_of_simulation_phase(uvm_phase phase);
     super.start_of_simulation_phase(phase);
 
-    // if (uvm_report_enabled(UVM_HIGH)) begin 
-        // sqrs.dump();
-    // end
+    if (uvm_report_enabled(UVM_HIGH)) begin 
+        sqrs.dump();
+    end
     
     `uvm_info("start_of_simulation_phase", $sformatf("=============== Start of %s ===============", this.get_type_name()), UVM_MEDIUM)
 endfunction : start_of_simulation_phase
@@ -161,7 +161,7 @@ task bridge_test_base::run_phase(uvm_phase phase);
     phase.raise_objection(this);
     
     `uvm_info(get_type_name(), $sformatf("Starting sequence: %s", v_seq.get_type_name()), UVM_MEDIUM)
-    v_seq.start(null); ///////////////// **************
+    v_seq.start(null);
     `uvm_info(get_type_name(), $sformatf("Finished sequence: %s", v_seq.get_type_name()), UVM_MEDIUM)
 
     phase.drop_objection(this);
